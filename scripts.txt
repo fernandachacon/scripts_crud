@@ -1,0 +1,49 @@
+CREATE
+
+CREATE TABLE pessoa
+(
+  id_pessoa integer NOT NULL,
+  nome character varying(255),
+  cpf character varying(255),
+  ativo boolean,
+  data_criacao timestamp without time zone,
+  CONSTRAINT pessoa_pkey PRIMARY KEY (id_pessoa),
+  CONSTRAINT uk_nlwiu48rutiltbnjle59krljo UNIQUE (cpf)
+
+)
+
+
+CREATE TABLE public.user
+(
+  id_user integer NOT NULL,
+  login character varying(255),
+  senha character varying(255),
+  id_pessoa integer,
+  CONSTRAINT user_pkey PRIMARY KEY (id_user),
+  CONSTRAINT uk_nlwiu48rutiltbnjle59krlie UNIQUE (login),
+  CONSTRAINT fk_9wnw55sajbeqbpd8fsjbna1ie FOREIGN KEY (id_pessoa)
+      REFERENCES public.pessoa (id_pessoa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+
+)
+
+
+INSERT
+
+INSERT INTO public.pessoa(
+            id_pessoa, nome, cpf, ativo, data_criacao)
+    VALUES (2, 'Layssa', '10485789632', true, '2018-12-26 15:23:02.158'),
+	   (3, 'Marcos', '10532140452', true, '2018-12-26 15:23:02.159'),
+	   (4, 'Júlia', '10258697841', true, '2018-12-26 15:23:02.160');
+
+
+UPDATE 
+
+UPDATE public.pessoa
+SET nome = 'Maria'
+WHERE ativo = false;
+
+DELETE
+
+DELETE FROM pessoa
+WHERE ativo = false;
