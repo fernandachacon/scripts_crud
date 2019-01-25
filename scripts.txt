@@ -15,6 +15,15 @@ CREATE TABLE pessoa
 
 )
 
+CREATE TABLE sala
+(
+  id_sala integer NOT NULL,
+  nome character varying(255),
+  numero integer,
+  CONSTRAINT sala_pkey PRIMARY KEY (id_sala)
+
+)
+
 
 CREATE TABLE public.user
 (
